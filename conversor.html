@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Conversor de Unidades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        input, select, button {
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Conversor de Unidades</h1>
+        <input type="number" id="inputValue" placeholder="Introduce el valor" required>
+        <select id="inputUnit">
+            <option value="kilometros">Kilómetros</option>
+            <option value="metros">Metros</option>
+            <option value="millas">Millas</option>
+        </select>
+        <select id="outputUnit">
+            <option value="kilometros">Kilómetros</option>
+            <option value="metros">Metros</option>
+            <option value="millas">Millas</option>
+        </select>
+        <button onclick="convertir()">Convertir</button>
+        <h2>Resultado: <span id="resultado"></span></h2>
+    </div>
+    <script>
+        function convertir() {
+            var valor = parseFloat(document.getElementById('inputValue').value);
+            var unidadEntrada = document.getElementById('inputUnit').value;
+            var unidadSalida = document.getElementById('outputUnit').value;
+            var resultado = 0;
+
+            if (isNaN(valor)) {
+                alert('Por favor, introduce un número válido.');
+                return;
+            }
+
+            // Conversión a metros primero
+            switch(unidadEntrada) {
+                case 'kilometros':
+                    valor *= 1000; // Convertir kilómetros a metros
+                    break;
+                case 'millas':
+                    valor *= 1609.34; // Convertir millas a metros
+                    break;
+                case 'metros':
+                default:
+                    // valor ya está en metros
+                    break;
+            }
+
+            // Conversión de metros a unidad de salida
+            switch(unidadSalida) {
+                case 'kilometros':
+                    resultado = valor / 1000; // Convertir metros a kilómetros
+                    break;
+                case 'millas':
+                    resultado = valor / 1609.34; // Convertir metros a millas
+                    break;
+                case 'metros':
+                    resultado = valor; // Mantener en metros
+                    break;
+            }
+
+            document.getElementById('resultado').textContent = resultado.toFixed(2);
+        }
+    </script>
+</body>
+</html>

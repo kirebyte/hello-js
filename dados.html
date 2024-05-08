@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulador de Dados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            color: white;
+            margin: 0;
+        }
+        #diceContainer {
+            text-align: center;
+        }
+        .dice {
+            font-size: 100px;
+            user-select: none; /* prevents text selection */
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="diceContainer">
+        <div class="dice" id="dice">&#x2680;</div> <!-- default face of the dice -->
+        <button onclick="rollDice()">Lanzar Dado</button>
+    </div>
+    <script>
+        function rollDice() {
+            const dice = document.getElementById('dice');
+            const result = Math.floor(Math.random() * 6) + 1; // Generate a number between 1 and 6
+            dice.innerHTML = getDiceFace(result);
+        }
+
+        function getDiceFace(number) {
+            const diceFaces = ['&#x2680;', '&#x2681;', '&#x2682;', '&#x2683;', '&#x2684;', '&#x2685;'];
+            return diceFaces[number - 1]; // return the corresponding HTML entity for dice face
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Sencilla</title>
+</head>
+<body>
+    <h1>Calculadora Sencilla</h1>
+    <form id="calculadora">
+        <input type="text" id="valor1" placeholder="Ingresa un número" required>
+        <select id="operacion">
+            <option value="suma">+</option>
+            <option value="resta">-</option>
+            <option value="multiplicacion">*</option>
+            <option value="division">/</option>
+        </select>
+        <input type="text" id="valor2" placeholder="Ingresa otro número" required>
+        <button type="button" onclick="calcular()">Calcular</button>
+    </form>
+    <h2>Resultado: <span id="resultado"></span></h2>
+
+    <script>
+        function calcular() {
+            // Obtener los valores de entrada y la operación seleccionada
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var operacion = document.getElementById('operacion').value;
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+            var resultado;
+
+            // Verificar que los números son válidos
+            if (isNaN(valor1) || isNaN(valor2)) {
+                alert('Por favor, ingresa números válidos.');
+                return;
+            }
+
+            // Realizar la operación según lo seleccionado
+            switch(operacion) {
+                case 'suma':
+                    resultado = valor1 + valor2;
+                    break;
+                case 'resta':
+                    resultado = valor1 - valor2;
+                    break;
+                case 'multiplicacion':
+                    resultado = valor1 * valor2;
+                    break;
+                case 'division':
+                    // Verificar división por cero
+                    if (valor2 === 0) {
+                        alert('División por cero no permitida.');
+                        return;
+                    }
+                    resultado = valor1 / valor2;
+                    break;
+                default:
+                    resultado = 'Operación no definida';
+            }
+
+            // Mostrar el resultado
+            document.getElementById('resultado').textContent = resultado.toFixed(2);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mad Libs en JavaScript</title>
+</head>
+<body>
+    <h1>Mad Libs en JavaScript</h1>
+    <p>Ingresa las palabras solicitadas y genera una historia divertida.</p>
+
+    <input type="text" id="sustantivo" placeholder="Ingresa un sustantivo (persona, lugar o cosa)">
+    <input type="text" id="adjetivo" placeholder="Ingresa un adjetivo (describe un sustantivo)">
+    <input type="text" id="verbo" placeholder="Ingresa un verbo (acción)">
+    <button onclick="generarHistoria()">Generar Historia</button>
+
+    <p id="historia"></p>
+
+    <script>
+        // Función para generar y mostrar la historia
+        function generarHistoria() {
+            // Obteniendo valores de los inputs
+            const sustantivo = document.getElementById('sustantivo').value;
+            const adjetivo = document.getElementById('adjetivo').value;
+            const verbo = document.getElementById('verbo').value;
+
+            // Verificar que todos los campos estén llenos
+            if (!sustantivo || !adjetivo || !verbo) {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+
+            // Objeto con las palabras ingresadas
+            const palabras = {
+                sustantivo: sustantivo,
+                adjetivo: adjetivo,
+                verbo: verbo
+            };
+
+            // Array con partes de la historia
+            const partesHistoria = [
+                `Había una vez un ${palabras.sustantivo} muy ${palabras.adjetivo}.`,
+                `Un día, decidió ${palabras.verbo} y todos se sorprendieron.`,
+                `Desde entonces, el ${palabras.sustantivo} ${palabras.adjetivo} fue muy famoso en todo el lugar.`
+            ];
+
+            // Combinando las partes en una sola historia
+            const historiaCompleta = partesHistoria.join(' ');
+
+            // Mostrando la historia en la página
+            document.getElementById('historia').textContent = historiaCompleta;
+        }
+    </script>
+</body>
+</html>
